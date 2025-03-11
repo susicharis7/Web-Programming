@@ -3,6 +3,7 @@
     <head>
         <meta charset = "UTF-8">
         <meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
+        <link rel="stylesheet" href="FirstTest.css">
         <title>Test Hello</title> 
     </head>
 
@@ -10,5 +11,54 @@
         <h1>Hello Everyone</h1>
         <p>Welcome to Web Programming!</p>
         <p>Just testing...</p>
+        <p id = "demo"></p>
+        <p id = "demoSecond"></p>
+
+        <a href="https://youtube.com" target="null">Click Here to go to Youtube!</a>
+        <!-- <img src="C:\Users\Haris\Desktop\ALL\Latest WP.jpg"> -->
+
+        <!-- Unordered & Ordered Lists -->
+        <ul>
+            <li>Item 1</li>
+            <li>Item 2</li>
+        </ul>
+
+        <ol>
+            <li>OL Item 1</li>
+            <li>OL Item 2</li>
+        </ol>
+
+        <!-- Tables -->
+         <table border="1">
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+            </tr>
+
+            <tr>
+                <td>Haris</td>
+                <td>20</td>
+            </tr>
+         </table>
+
+         <!-- Forms -->
+          <form action = "#" method="POST">
+            <input type="text" name="name" placeholder="Enter your name">
+            <input type="submit" value="Submit">
+          </form>
+
+          <button onclick="displayMessage()">Click Me</button>
+        
+
+          <!-- JS -->
+            <script>
+                document.getElementById("demo").innerHTML = "Hello,JavaScript!";
+                // Trazi id="demo", i postavlja tekst "Hello,JavaScript!" 
+            </script>
+
+
+          <script src="FirstTest.js"></script>
     </body>
+
+    
 </html>
