@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    background-color: blueviolet;
+}
+
+.container {
+   background-color: transparent;
+}
+
+
+
+ h1 {
+    color:blue;
+    text-align: center;
+ }
+
+ .my-navbar {
+   background-color: #333 !important;
+   padding: 20px;
+}
+
+/* Boja linkova */
+.my-navbar .nav-link {
+   color: white !important;
+   font-weight: bold;
+}
+
+/* Hover efekat */
+.my-navbar .nav-link:hover {
+   color: red !important;
+}
+
+/* Boja branda */
+.my-navbar .navbar-brand {
+   color: blue !important;
+   font-size: 1.8rem;
+}
