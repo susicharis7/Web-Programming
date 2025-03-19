@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Car Rental Project</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/spapp.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="logo container">
+            <div>
+                <h1><a href="#home" id="logo">SUŠIĆ</a></h1>
+                <p>CAR RENTAL COMPANY</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation (SPAPP links) -->
+    <nav id="nav">
+        <ul>
+            <li><a href="#home">HOME</a></li>
+            <li><a href="#cars-list">LIST OF CARS</a></li>
+            <li><a href="#rent-now">RENT NOW</a></li>
+            <li><a href="#dashboard">DASHBOARD</a></li>
+            <li><a href="#register">REGISTER</a></li>
+            <li><a href="#login">LOGIN</a></li>
+            <li><a href="#profile">MY PROFILE</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main SPA Content -->
+    <main id="spapp" role="main">
+        <section id="home" data-load="home.html"></section>
+        <section id="cars-list" data-load="cars-list.html"></section>
+        <section id="rent-now" data-load="rent-now.html"></section>
+        <section id="dashboard" data-load="dashboard.html"></section>
+        <section id="register" data-load="register.html"></section>
+        <section id="login" data-load="login.html"></section>
+        <section id="profile" data-load="profile.html"></section>
+        
+        <!-- Posebno -->
+        <section id="suv" data-load="suv.html"></section>
+        <section id="sedan" data-load="sedan.html"></section>
+        <section id="electric" data-load="electric.html"></section>
+        <section id="luxury" data-load="luxury.html"></section>
+        <section id="news" data-load="news.html"></section>
+        
+    </main>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="container">
+            <div class="row gtr-200">
+                <div class="col-12">
+    
+                    <!-- About -->
+                    <section>
+                        <h2 class="major"><span>About Our Car Rental</span></h2>
+                        <p>
+                            <strong>Sušić Car Rental</strong> is your trusted partner for renting high-quality vehicles.
+                            Whether you need a car for a business trip, vacation, or special occasion, we offer a wide selection of vehicles to meet your needs.
+                            Book quickly and easily with transparent pricing and no hidden fees. <br><br>
+                            Our mission is to provide the best rental experience — safe, easy, and affordable.
+                        </p>
+                    </section>
+    
+                </div>
+                <div class="col-12">
+    
+                    <!-- Contact -->
+                    <section>
+                        <h2 class="major"><span>Contact Us</span></h2>
+                        <ul class="contact">
+                            <li><a class="icon brands fa-facebook-f" href="https://www.facebook.com/hnn.strike.9" target="null"><span class="label">Facebook</span></a></li>
+                            <li><a class="icon brands fa-twitter" href="https://x.com/KANYEWEST" target="null"><span class="label">Twitter</span></a></li>
+                            <li><a class="icon brands fa-instagram" href="https://www.instagram.com/haarke_/" target="null"><span class="label">Instagram</span></a></li>
+                            <li><a class="icon brands fa-dribbble" href="https://dribbble.com/" target="null"><span class="label">Dribbble</span></a></li>
+                            <li><a class="icon brands fa-linkedin-in" href="https://www.linkedin.com/in/haris-su%C5%A1i%C4%87-a96865339/?originalSubdomain=ba" target="null"><span class="label">LinkedIn</span></a></li>
+                        </ul>
+                        <p>
+                            <strong>Email:</strong> haris.susic@stu.ibu.edu.ba<br>
+                            <strong>Phone:</strong> +387 62 625 427
+                        </p>
+                    </section>
+    
+                </div>
+            </div>
+    
+            <!-- Copyright -->
+            <div id="copyright">
+                <ul class="menu">
+                    <li>&copy; 2025 Sušić C. R. All rights reserved.</li>
+                    <li>Project implementation inspired by <a href="https://www.instagram.com/haarke_/" target="null">Sušić Haris</a></li>
+                </ul>
+            </div>
+    
+        </div>
+    </footer>
+    
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.dropotron.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/jquery.spapp.min.js"></script>
+  
+
+    
+    
+
+
+    
+    <script>
+        var app = $.spapp({
+            defaultView: "#home",
+            templateDir: "pages/"
+        });
+
+
+
+        app.run();
+    </script>
+
+<script>
+    // Blokiraj sve forme da se ne submituju klasicno
+    document.addEventListener("submit", function (e) {
+        e.preventDefault(); 
+    }, true);
+</script>
+
+
+</body>
+</html>
