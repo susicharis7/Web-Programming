@@ -1,0 +1,65 @@
+<section id="rent-now-page" class="container">
+    <header class="major">
+        <h2>Rent a Car Now</h2>
+        <p>Choose your car, select your dates, and book instantly.</p>
+    </header>
+
+    <form id="rent-now-form" method="post" action="#" class="form">
+        <div class="row gtr-50">
+            <!-- Full Name -->
+            <div class="col-6 col-12-mobilep">
+                <label for="name">Full Name</label>
+                <input type="text" name="name" id="name" placeholder="Enter your full name" required />
+            </div>
+            
+            <!-- Email -->
+            <div class="col-6 col-12-mobilep">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="Enter your email" required />
+            </div>
+
+            <!-- Select Car -->
+            <div class="col-12">
+                <label for="car">Select Your Car</label>
+                <select name="car" id="car" required>
+                    <option value="" disabled selected>Choose a car</option>
+                    <option value="mercedes">Mercedes-Benz C-Class</option>
+                    <option value="bmw">BMW 7 Series</option>
+                    <option value="audi">Audi A6</option>
+                    <option value="vw">Volkswagen Golf</option>
+                </select>
+            </div>
+
+            <!-- Pick-up and Return Date -->
+            <div class="col-6 col-12-mobilep">
+                <label for="pickup-date">Pick-up Date</label>
+                <input type="date" name="pickup-date" id="pickup-date" required />
+            </div>
+
+            <div class="col-6 col-12-mobilep">
+                <label for="return-date">Return Date</label>
+                <input type="date" name="return-date" id="return-date" required />
+            </div>
+
+            <!-- Location -->
+            <div class="col-6 col-12-mobilep">
+                <label for="pickup-location">Pick-up Location</label>
+                <input type="text" name="pickup-location" id="pickup-location" placeholder="Enter pick-up location" required />
+            </div>
+
+            <div class="col-6 col-12-mobilep">
+                <label for="return-location">Return Location</label>
+                <input type="text" name="return-location" id="return-location" placeholder="Enter return location" required />
+            </div>
+
+            
+
+            <!-- Rent : Button -->
+            <div class="col-12">
+                <ul class="actions">
+                    <li><input type="submit" value="Rent Now" class="button primary" /></li>
+                </ul>
+            </div>
+        </div>
+    </form>
+</section>

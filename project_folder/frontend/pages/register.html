@@ -1,0 +1,77 @@
+<section id="register-page" class="container">
+    <header class="major">
+        <h2>Register</h2>
+        <p>Create your account to rent a car easily</p>
+    </header>
+
+    <!-- method="post" action="#" -->
+    <form id="register-form" class="form">
+        <div class="row gtr-50">
+            <div class="col-6 col-12-mobilep">
+                <input type="text" name="name" id="name" placeholder="Full Name" required />
+            </div>
+            <div class="col-6 col-12-mobilep">
+                <input type="email" name="email" id="email" placeholder="Email" required />
+            </div>
+            <div class="col-6 col-12-mobilep">
+                <input type="text" name="phone" id="phone" placeholder="Phone Number" required />
+            </div>
+            <div class="col-6 col-12-mobilep">
+                <input type="text" name="address" id="address" placeholder="Address" required />
+            </div>
+            <div class="col-6 col-12-mobilep">
+                <input type="password" name="password" id="password" placeholder="Password" required />
+            </div>
+            <div class="col-6 col-12-mobilep">
+                <input type="password" name="confirm-password" id="confirm-password" placeholder="Confirm Password" required />
+            </div>
+            <div class="col-12">
+                <ul class="actions">
+                    <li><input type="submit" value="Register" class="button primary" /></li>
+                    <li><a href="#login" class="button">Already have an account? Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        document.getElementById("register-form").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            let name = document.getElementById("name").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let phone = document.getElementById("phone").value.trim();
+            let address = document.getElementById("address").value.trim();
+            let password = document.getElementById("password").value.trim();
+            let confirmPassword = document.getElementById("confirm-password").value.trim();
+
+            // Safe password using regex
+            let strongPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+
+            // Validation
+            if (!name || !email || !phone || !address || !password || !confirmPassword) {
+                alert("All fields are required!");
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match!");
+                return;
+            }
+
+            if (!strongPassword.test(password)) {
+            alert("Password must contain AT LEAST 8 characters, ONE Uppercase Letter, ONE Lowercase Letter, ONE Number, and ONE Special Character!");
+            } else {
+                alert("Registration Successfull!")
+            }
+
+            // Reset form fields
+            document.getElementById("register-form").reset();
+
+            // Redirect to Home Page
+            window.location.hash = "#home";
+        });
+    </script>
+</section>
+
+
