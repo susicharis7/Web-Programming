@@ -1,27 +1,25 @@
 <?php
-$result = ''; // Prazan rezultat na početku
+$result = "";
 
-// Kada korisnik pošalje formu (klikne submit)
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $number1 = $_POST["number1"];
-    $number2 = $_POST["number2"];
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    $firstNum = $_POST["firstNum"];
+    $secondNum = $_POST["secondNum"];
     $operation = $_POST["operation"];
 
-    // Provera da su uneti brojevi
-    if (is_numeric($number1) && is_numeric($number2)) {
+    if (is_numeric($firstNum) && is_numeric($secondNum)) {
         switch ($operation) {
             case '+':
-                $result = $number1 + $number2;
+                $result = $firstNum + $secondNum;
                 break;
             case '-':
-                $result = $number1 - $number2;
+                $result = $firstNum - $secondNum;
                 break;
             case '*':
-                $result = $number1 * $number2;
+                $result = $firstNum * $secondNum;
                 break;
             case '/':
-                if ($number2 != 0) {
-                    $result = $number1 / $number2;
+                if ($secondNum != 0) {
+                    $result = $firstNum / $secondNum;
                 } else {
                     $result = "Cannot divide by zero!";
                 }
@@ -33,38 +31,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $result = "Please enter valid numbers!";
     }
 }
+
+
+
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Simple Calculator</title>
+    <title>Simple Calc. App</title>
 </head>
 <body>
 
-<h2>Simple Calculator</h2>
+    <form method="POST" action="">
+        First Number : <input type="text" name="firstNum" placeholder="Enter first Number:"> </br>
+        Second Number : <input type="text" name="secondNum" placeholder="Enter second Number:"> </br>
 
-<form method="post" action="">
-    Number 1: <input type="text" name="number1" required><br><br>
-    Number 2: <input type="text" name="number2" required><br><br>
-
-    Operation:
-    <select name="operation" required>
-        <option value="+">Addition (+)</option>
-        <option value="-">Subtraction (-)</option>
-        <option value="*">Multiplication (*)</option>
-        <option value="/">Division (/)</option>
-    </select><br><br>
-
-    <button type="submit">Calculate</button>
-</form>
-
-<?php
-// Prikaz rezultata ako postoji
-if ($result !== '') {
-    echo "<h3>Result: $result</h3>";
-}
-?>
-
+        Selectaj Operation! : 
+        <select name="operation" required>
+            <option value ="+">Addition</option>
+            <option value ="-">Subtraction</option>
+            <option value ="*">Multiplication</option>
+            <option value="/">Division</option>
+        </select> <br>
+        <button type="submit">CALCULATE</button>
+    </form>
+    
 </body>
 </html>
+
+
+<?php
+    if ($result !== '') {
+        echo "<h3>Result: $result</h3>";
+    }
+?>
