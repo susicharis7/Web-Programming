@@ -1,5 +1,5 @@
 <?php
-
+// OOP in PHP
     // Class
     class Student {
         public $first_name;
