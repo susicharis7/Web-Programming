@@ -33,21 +33,40 @@ class Database {
     public function insertTestStudent() {
         $sql = "INSERT INTO students (first_name, last_name) VALUES (:first_name, :last_name)";
         $stmt = $this->connection->prepare($sql);
+        // prava poenta preparedStatementa -> mozemo ubacivati vise studenata
         $stmt->execute([
             'first_name' => 'Harkiz',
             'last_name' => 'Student'
         ]);
 
-        echo "Uspjesno ubacen harkiz student!";
+        $stmt->execute([
+            'first_name' => 'Semha',
+            'last_name' => 'Majser'
+        ]);
+
+        $stmt->execute([
+            'first_name' => 'Tarik',
+            'last_name' => 'Skender'
+        ]);
+
+        
+
+        echo "Uspjesno ubaceni svi studenti!";
+    }
+
+    public function getConnection() {
+        return $this->connection;
     }
 }
 
-echo "START<br>";
-
 $db = new Database("students");
 
-echo "KONEKCIJA OK<br>";
+$stmt = $db->getConnection()->query("SELECT COUNT(*) as broj FROM students WHERE first_name = 'Harkiz' AND last_name = 'Student'");
+$broj = $stmt->fetch()['broj'];
 
-$db->insertTestStudent();
-
-echo "<br>Script reached the end.";
+if ($broj == 0) {
+    $db->insertTestStudent();
+} else {
+    echo "You already inserted him!";
+}
+?>
