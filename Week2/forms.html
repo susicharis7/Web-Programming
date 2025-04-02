@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <form action="working-with-forms.php" method="POST">
+        Name: <input type="text" name="name">
+        <button type="submit">SUBMIT</button>
+    </form>
+
+</html>
+
+<!--
+    Pravimo formu u kojoj korisnik unosi ime.
+    action="working-with-forms.php" -> znaci da ce se podatci poslati na tu PHP datoteku 
+    method="POST" -> znaci da ce podaci biti skriveni u tijelu HTTP zahtjeva (ne vidi se u URLu)
+
+    Kada korisnik klikne SUBMIT, podatak koji je unesen (name), ide kao POST request.
+-->
