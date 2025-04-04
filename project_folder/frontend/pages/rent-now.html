@@ -6,17 +6,6 @@
 
     <form id="rent-now-form" method="post" action="#" class="form">
         <div class="row gtr-50">
-            <!-- Full Name -->
-            <div class="col-6 col-12-mobilep">
-                <label for="name">Full Name</label>
-                <input type="text" name="name" id="name" placeholder="Enter your full name" required />
-            </div>
-            
-            <!-- Email -->
-            <div class="col-6 col-12-mobilep">
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email" placeholder="Enter your email" required />
-            </div>
 
             <!-- Select Car -->
             <div class="col-12">
@@ -41,20 +30,43 @@
                 <input type="date" name="return-date" id="return-date" required />
             </div>
 
-            <!-- Location -->
+            <!-- Pick-up Location -->
             <div class="col-6 col-12-mobilep">
                 <label for="pickup-location">Pick-up Location</label>
-                <input type="text" name="pickup-location" id="pickup-location" placeholder="Enter pick-up location" required />
+                <select name="pickup-location" id="pickup-location" required>
+                    <option value="" disabled selected>Choose a pick-up location</option>
+                    <option value="Sarajevo">Sarajevo</option>
+                    <option value="Banja Luka">Banja Luka</option>
+                    <option value="Tuzla">Tuzla</option>
+                    <option value="Zenica">Zenica</option>
+                    <option value="Mostar">Mostar</option>
+                    <option value="Bihać">Bihać</option>
+                    <option value="Brčko">Brčko</option>
+                    <option value="Doboj">Doboj</option>
+                    <option value="Bijeljina">Bijeljina</option>
+                    <option value="Travnik">Travnik</option>
+                </select>
             </div>
 
+            <!-- Return Location -->
             <div class="col-6 col-12-mobilep">
                 <label for="return-location">Return Location</label>
-                <input type="text" name="return-location" id="return-location" placeholder="Enter return location" required />
+                <select name="return-location" id="return-location" required>
+                    <option value="" disabled selected>Choose a return location</option>
+                    <option value="Sarajevo">Sarajevo</option>
+                    <option value="Banja Luka">Banja Luka</option>
+                    <option value="Tuzla">Tuzla</option>
+                    <option value="Zenica">Zenica</option>
+                    <option value="Mostar">Mostar</option>
+                    <option value="Bihać">Bihać</option>
+                    <option value="Brčko">Brčko</option>
+                    <option value="Doboj">Doboj</option>
+                    <option value="Bijeljina">Bijeljina</option>
+                    <option value="Travnik">Travnik</option>
+                </select>
             </div>
 
-            
-
-            <!-- Rent : Button -->
+            <!-- Rent Button -->
             <div class="col-12">
                 <ul class="actions">
                     <li><input type="submit" value="Rent Now" class="button primary" /></li>
@@ -62,4 +74,33 @@
             </div>
         </div>
     </form>
+
+    <!-- Custom select style -->
+    <style>
+        select {
+            max-height: 200px;
+            overflow-y: auto;
+            display: block;
+            width: 100%;
+            padding: 8px;
+            font-size: 1rem;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            appearance: auto;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        select:hover {
+            border-color: #28a745;
+            background-color: #eaffea;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #28a745;
+            box-shadow: 0 0 4px rgba(40, 167, 69, 0.5);
+        }
+    </style>
 </section>
