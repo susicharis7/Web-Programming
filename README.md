@@ -14,7 +14,4 @@ This repository contains a full-stack web programming project developed as part 
 - ✅ Custom DAO (Data Access Object) architecture for clean code separation
 - ✅ Frontend-backend integration via REST-style logic
 
----
-
-## 🗂️ Project Structure
 
