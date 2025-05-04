@@ -10,18 +10,23 @@ class CarService extends BaseService {
     }
 
     public function get_available() {
-        return $this->carDao->get_available();
+        return $this->dao->get_available();
     }
-
+    
     public function add_car($car) {
         $this->validate_car($car);
-        return $this->carDao->add($car);
+        return $this->dao->add($car);
     }
-
+    
     public function update_car($id, $car) {
         $this->validate_car($car);
-        return $this->carDao->update($car, $id);
+        return $this->dao->update($car, $id);
     }
+    
+    public function get_by_brand($brand) {
+        return $this->dao->get_by_brand($brand);
+    }
+    
 
     private function validate_car($car) {
         if (!isset($car['brand']) || trim($car['brand']) === '') {
@@ -49,9 +54,6 @@ class CarService extends BaseService {
         }
     }
 
-    // get by brand from DAO
-    public function get_by_brand($brand) {
-        return $this->dao->get_by_brand($brand);
-    }
+    
     
 }

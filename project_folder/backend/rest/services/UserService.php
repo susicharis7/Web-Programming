@@ -42,4 +42,12 @@ class UserService extends BaseService {
     public function get_user_by_email($email) {
         return $this->dao->get_user_by_email($email);
     }
+
+    public function login($email, $password_plain) {
+        $user = $this->dao->get_user_by_email($email);
+        if (!$user || !password_verify($password_plain, $user['password_hash'])) {
+            throw new Exception("Invalid email or password.");
+        }
+        return $user;
+    }
 }

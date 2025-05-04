@@ -2,7 +2,6 @@
 require_once __DIR__ . '/../dao/LocationDao.php';
 require_once __DIR__ . '/BaseService.php';
 
-
 class LocationService extends BaseService {
     public function __construct() {
         parent::__construct(new LocationDao());
@@ -12,11 +11,11 @@ class LocationService extends BaseService {
         if (!isset($location['name']) || trim($location['name']) === '') {
             throw new Exception("Location name is required.");
         }
-    
+
         if (!isset($location['address']) || trim($location['address']) === '') {
             throw new Exception("Location address is required.");
         }
-    
+
         if ($this->dao->get_by_name($location['name'])) {
             throw new Exception("Location with that name already exists.");
         }
@@ -31,8 +30,12 @@ class LocationService extends BaseService {
         if (!isset($location['name']) || trim($location['name']) === '') {
             throw new Exception("Location name is required.");
         }
+
         return $this->dao->update($location, $id);
     }
 
+    public function get_by_name($name) {
+        return $this->dao->get_by_name($name);
+    }
+    
 }
-?>

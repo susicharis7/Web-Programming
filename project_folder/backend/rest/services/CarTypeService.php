@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once __DIR__ . '/../dao/CarTypeDao.php';
 require_once __DIR__ . '/BaseService.php';
 
@@ -7,9 +7,8 @@ class CarTypeService extends BaseService {
         parent::__construct(new CarTypeDao());
     }
 
-    // if we decide to add manually
     private function validate_car_type($type) {
-        if(!isset($type['name']) || trim($type['name']) === '') {
+        if (!isset($type['name']) || trim($type['name']) === '') {
             throw new Exception("Car type name is required.");
         }
     }
@@ -17,16 +16,20 @@ class CarTypeService extends BaseService {
     public function add_car_type($type) {
         $this->validate_car_type($type);
 
-        if($this->dao->get_by_name($type['name'])) {
-            throw new Exception("Car type with name : " . $type['name'] . " already exists.");
+        if ($this->dao->get_by_name($type['name'])) {
+            throw new Exception("Car type with name '" . $type['name'] . "' already exists.");
         }
 
         return $this->dao->add($type);
-
     }
 
-    public function update_car_type($id,$type) {
+    public function update_car_type($id, $type) {
         $this->validate_car_type($type);
+
+        if ($this->dao->get_by_name_excluding_id($type['name'], $id)) {
+            throw new Exception("Another car type with name '" . $type['name'] . "' already exists.");
+        }
+
         return $this->dao->update($type, $id);
     }
 
@@ -34,6 +37,3 @@ class CarTypeService extends BaseService {
         return $this->dao->get_by_name($name);
     }
 }
-
-
-?>

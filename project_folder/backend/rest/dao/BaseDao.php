@@ -1,13 +1,11 @@
 <?php
 require_once __DIR__ . "/../config.php";
 
-class BaseDao
-{
+class BaseDao {
     protected $connection;
     private $table_name;
 
-    public function __construct($table_name)
-    {
+    public function __construct($table_name) {
         $this->table_name = $table_name;
         try {
             $this->connection = new PDO(
@@ -24,21 +22,18 @@ class BaseDao
         }
     }
 
-    protected function query($query, $params)
-    {
+    protected function query($query, $params) {
         $stmt = $this->connection->prepare($query);
         $stmt->execute($params);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    protected function query_unique($query, $params)
-    {
+    protected function query_unique($query, $params) {
         $results = $this->query($query, $params);
         return reset($results);
     }
 
-    public function add($entity)
-    {
+    public function add($entity) {
         $query = "INSERT INTO " . $this->table_name . " (";
         foreach ($entity as $column => $value) {
             $query .= $column . ', ';
@@ -57,8 +52,7 @@ class BaseDao
         return $entity;
     }
 
-    public function update($entity, $id, $id_column = "id")
-    {
+    public function update($entity, $id, $id_column = "id") {
         $query = "UPDATE " . $this->table_name . " SET ";
         foreach ($entity as $column => $value) {
             $query .= $column . "=:" . $column . ", ";
@@ -71,10 +65,20 @@ class BaseDao
         return $entity;
     }
 
-    public function delete($id)
-    {
+    public function delete($id) {
         $stmt = $this->connection->prepare("DELETE FROM " . $this->table_name . " WHERE id = :id");
         $stmt->bindValue(':id', $id);
         $stmt->execute();
     }
+
+    // Universal
+
+    public function get_all() {
+        return $this->query("SELECT * FROM " . $this->table_name, []);
+    }
+
+    public function get_by_id($id) {
+        return $this->query_unique("SELECT * FROM " . $this->table_name . " WHERE id = :id", ['id' => $id]);
+    }
+
 }

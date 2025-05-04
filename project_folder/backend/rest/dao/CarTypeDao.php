@@ -10,13 +10,16 @@ class CarTypeDao extends BaseDao
         parent::__construct($this->table_name);
     }
 
-   
-    public function get_all() {
-        return $this->query("SELECT * FROM " . $this->table_name, []);
+    public function get_by_name($name) {
+        return $this->query_unique("SELECT * FROM " . $this->table_name . " WHERE name = :name", ['name' => $name]);
     }
-
-   
-    public function get_by_id($id) {
-        return $this->query_unique("SELECT * FROM " . $this->table_name . " WHERE id = :id", ['id' => $id]);
+    
+    public function get_by_name_excluding_id($name, $id) {
+        return $this->query_unique("SELECT * FROM " . $this->table_name . " WHERE name = :name AND id != :id", [
+            'name' => $name,
+            'id' => $id
+        ]);
     }
+    
+    
 }
