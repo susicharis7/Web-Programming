@@ -26,6 +26,8 @@ class CarService extends BaseService {
     public function get_by_brand($brand) {
         return $this->dao->get_by_brand($brand);
     }
+
+    
     
 
     private function validate_car($car) {
@@ -45,9 +47,9 @@ class CarService extends BaseService {
             $car['available'] = 1; 
         }
     
-        if ($car['available'] == 0) {
-            throw new Exception("Car must be available to be added.");
-        }
+        // if ($car['available'] == 0) {
+        //     throw new Exception("Car must be available to be added.");
+        // }
     
         if (!isset($car['car_type_id']) || !is_numeric($car['car_type_id'])) {
             throw new Exception("Car type ID must be provided and numeric.");

@@ -11,9 +11,11 @@ class CarDao extends BaseDao {
 
 
     public function get_available() {
-        return $this->query("SELECT * FROM " . $this->table_name . " WHERE available = TRUE", []);
+        $result = $this->query("SELECT * FROM {$this->table_name} WHERE available = 1", []);
+        return is_array($result) ? $result : [];
     }
-
+    
+    
     public function get_by_brand($brand) {
         return $this->query("SELECT * FROM {$this->table_name} WHERE brand = :brand", ['brand' => $brand]);
     }    

@@ -28,15 +28,24 @@ Flight::route('GET /cars/@id', function ($id) {
 
 /**
  * @OA\Get(
- *     path="/cars/available",
+ *     path="/cars/only-available",
  *     tags={"cars"},
  *     summary="Get all available cars",
  *     @OA\Response(response=200, description="Available cars")
  * )
  */
-Flight::route('GET /cars/available', function () {
-    Flight::json(Flight::car_service()->get_available());
+Flight::route('GET /cars/only-available', function () {
+    $cars = Flight::car_service()->get_available();
+
+    // Loguj šta vraća servis
+    error_log("cars from service: " . var_export($cars, true));
+
+    // Sigurno vrati JSON, čak i ako je prazan niz
+    Flight::json(is_array($cars) ? $cars : []);
 });
+
+
+
 
 /**
  * @OA\Post(
@@ -49,6 +58,7 @@ Flight::route('GET /cars/available', function () {
  *             required={"brand", "model", "price_per_day", "car_type_id"},
  *             @OA\Property(property="brand", type="string", example="Mazda"),
  *             @OA\Property(property="model", type="string", example="CX-5"),
+ *             @OA\Property(property="year",type="integer",example=2024),
  *             @OA\Property(property="price_per_day", type="number", format="float", example=85.5),
  *             @OA\Property(property="available", type="boolean", example=true),
  *             @OA\Property(property="car_type_id", type="integer", example=1)

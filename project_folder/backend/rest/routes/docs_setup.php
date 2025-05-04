@@ -24,4 +24,3 @@
 *     name="Authentication"
 * )
 */
-class SwaggerSetup {}
