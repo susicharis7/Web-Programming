@@ -110,7 +110,8 @@ Flight::route('PUT /users/@id', function ($id) {
  *             @OA\Property(property="password", type="string", example="password123")
  *         )
  *     ),
- *     @OA\Response(response=200, description="User authenticated")
+ *     @OA\Response(response=200, description="User authenticated"),
+ *     @OA\Response(response=401, description="Invalid credentials")
  * )
  */
 Flight::route('POST /users/login', function () {

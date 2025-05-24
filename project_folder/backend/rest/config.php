@@ -20,4 +20,9 @@ class Config {
     public static function DB_HOST() {
         return 'localhost';
     }
+
+    public static function JWT_SECRET() {
+        return 'harkejwt321';
+    }
+    
 }
