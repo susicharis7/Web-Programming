@@ -3,7 +3,7 @@
         'name' => 'haris/car-rental',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '88d7848f56658fecf2f6b38d3e28e29afeee4288',
+        'reference' => '4ffb606b0d41e5b971c2ab57705a4a870167bc18',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -37,6 +37,15 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+        'firebase/php-jwt' => array(
+            'pretty_version' => 'v6.11.1',
+            'version' => '6.11.1.0',
+            'reference' => 'd1e91ecf8c598d073d0995afa8cd5c75c6e19e66',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../firebase/php-jwt',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'flightphp/core' => array(
             'pretty_version' => 'v3.15.2',
             'version' => '3.15.2.0',
@@ -49,7 +58,7 @@
         'haris/car-rental' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '88d7848f56658fecf2f6b38d3e28e29afeee4288',
+            'reference' => '4ffb606b0d41e5b971c2ab57705a4a870167bc18',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

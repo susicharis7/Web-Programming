@@ -1,61 +1,32 @@
 <section id="login-page" class="container">
     <header class="major">
-        <h2>Login</h2>
-        <p>Access your account to rent a car</p>
+      <h2>Login</h2>
+      <p>Access your account to rent a car</p>
     </header>
-
+  
     <form id="login-form" method="post" action="#" class="form">
-        <div class="row gtr-50">
-            <div class="col-12">
-                <input type="email" name="email" id="login-email" placeholder="Email" required />
-            </div>
-            <div class="col-12">
-                <input type="password" name="password" id="login-password" placeholder="Password" required />
-            </div>
-            <div class="col-12">
-                <ul class="actions">
-                    <li><input type="submit" value="Login" class="button primary" /></li>
-                    <li><a href="#register" class="button">Don't have an account? Register</a></li>
-                </ul>
-            </div>
+      <div class="row gtr-50">
+        <div class="col-12">
+          <input type="email" name="email" id="login-email" placeholder="Email" required />
         </div>
+        <div class="col-12">
+          <input type="password" name="password" id="login-password" placeholder="Password" required />
+        </div>
+        <div class="col-12">
+          <ul class="actions">
+            <li><input type="submit" value="Login" class="button primary" /></li>
+            <li><a href="#register" class="button">Don't have an account? Register</a></li>
+          </ul>
+        </div>
+      </div>
     </form>
-
+  
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-    // Kada se stranica ucita, slusamo SPApp event za ucitavanje stranica
-    $(document).on("spapp:pageChanged", function (e, page) {
+      $(document).on("spapp:pageChanged", function (e, page) {
         if (page === "login") {
-            console.log("Login page loaded!");
-
-            const loginForm = document.getElementById("login-form");
-
-            if (loginForm) {
-                loginForm.addEventListener("submit", function (e) {
-                    e.preventDefault();
-
-                    let email = document.getElementById("login-email").value.trim();
-                    let password = document.getElementById("login-password").value.trim();
-
-                    if (!email || !password) {
-                        alert("All fields are required!");
-                        return;
-                    }
-
-                    // Simulacija login-a
-                    alert("Login successful! (Simulation)");
-
-                    // Reset polja forme
-                    loginForm.reset();
-
-                    // Prebacivanje na Home page
-                    window.location.hash = "#home";
-                });
-            }
+          UserService.init();
         }
-    });
-});
-
+      });
     </script>
-</section>
-
+  </section>
+  

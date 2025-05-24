@@ -6,10 +6,12 @@ require_once __DIR__ . '/../services/CarService.php';
  *     path="/cars",
  *     tags={"cars"},
  *     summary="Get all cars",
+ *      security={{"ApiKey": {}}},
  *     @OA\Response(response=200, description="Array of all cars")
  * )
  */
 Flight::route('GET /cars', function () {
+    Flight::auth_middleware()->authorizeRoles([Roles::ADMIN, Roles::USER]);
     Flight::json(Flight::car_service()->get_all());
 });
 
@@ -18,11 +20,13 @@ Flight::route('GET /cars', function () {
  *     path="/cars/{id}",
  *     tags={"cars"},
  *     summary="Get car by ID",
+ *     security={{"ApiKey": {}}},
  *     @OA\Parameter(name="id", in="path", required=true, @OA\Schema(type="integer")),
  *     @OA\Response(response=200, description="Car by ID")
  * )
  */
 Flight::route('GET /cars/@id', function ($id) {
+    Flight::auth_middleware()->authorizeRoles([Roles::ADMIN, Roles::USER]);
     Flight::json(Flight::car_service()->get_by_id($id));
 });
 
@@ -31,16 +35,16 @@ Flight::route('GET /cars/@id', function ($id) {
  *     path="/cars/only-available",
  *     tags={"cars"},
  *     summary="Get all available cars",
+ *     security={{"ApiKey": {}}},
  *     @OA\Response(response=200, description="Available cars")
  * )
  */
 Flight::route('GET /cars/only-available', function () {
+    Flight::auth_middleware()->authorizeRoles([Roles::ADMIN, Roles::USER]);
     $cars = Flight::car_service()->get_available();
 
-    // Loguj šta vraća servis
-    error_log("cars from service: " . var_export($cars, true));
 
-    // Sigurno vrati JSON, čak i ako je prazan niz
+    error_log("cars from service: " . var_export($cars, true));
     Flight::json(is_array($cars) ? $cars : []);
 });
 
@@ -52,6 +56,7 @@ Flight::route('GET /cars/only-available', function () {
  *     path="/cars",
  *     tags={"cars"},
  *     summary="Add a new car",
+ *     security={{"ApiKey": {}}},
  *     @OA\RequestBody(
  *         required=true,
  *         @OA\JsonContent(
@@ -68,6 +73,7 @@ Flight::route('GET /cars/only-available', function () {
  * )
  */
 Flight::route('POST /cars', function () {
+    Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
     $data = Flight::request()->data->getData();
     try {
         Flight::json(Flight::car_service()->add_car($data));
@@ -81,6 +87,7 @@ Flight::route('POST /cars', function () {
  *     path="/cars/{id}",
  *     tags={"cars"},
  *     summary="Update car by ID",
+ *     security={{"ApiKey": {}}},
  *     @OA\Parameter(name="id", in="path", required=true, @OA\Schema(type="integer")),
  *     @OA\RequestBody(
  *         required=true,
@@ -96,6 +103,7 @@ Flight::route('POST /cars', function () {
  * )
  */
 Flight::route('PUT /cars/@id', function ($id) {
+    Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
     $data = Flight::request()->data->getData();
     try {
         Flight::json(Flight::car_service()->update_car($id, $data));
@@ -109,11 +117,13 @@ Flight::route('PUT /cars/@id', function ($id) {
  *     path="/cars/{id}",
  *     tags={"cars"},
  *     summary="Delete a car by ID",
+ *     security={{"ApiKey": {}}},
  *     @OA\Parameter(name="id", in="path", required=true, @OA\Schema(type="integer")),
  *     @OA\Response(response=200, description="Car deleted")
  * )
  */
 Flight::route('DELETE /cars/@id', function ($id) {
+    Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
     Flight::car_service()->delete($id);
     Flight::json(["message" => "Car deleted"]);
 });
