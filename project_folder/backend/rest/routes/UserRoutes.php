@@ -6,10 +6,12 @@ require_once __DIR__ . '/../services/UserService.php';
  *     path="/users",
  *     tags={"users"},
  *     summary="Get all users",
+ * security={{"ApiKey": {}}},
  *     @OA\Response(response=200, description="Array of users")
  * )
  */
 Flight::route('GET /users', function () {
+    Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
     Flight::json(Flight::user_service()->get_all());
 });
 
@@ -18,11 +20,13 @@ Flight::route('GET /users', function () {
  *     path="/users/{id}",
  *     tags={"users"},
  *     summary="Get user by ID",
+ * security={{"ApiKey": {}}},
  *     @OA\Parameter(name="id", in="path", required=true, @OA\Schema(type="integer")),
  *     @OA\Response(response=200, description="User by ID")
  * )
  */
 Flight::route('GET /users/@id', function ($id) {
+    Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
     Flight::json(Flight::user_service()->get_by_id($id));
 });
 
@@ -31,11 +35,13 @@ Flight::route('GET /users/@id', function ($id) {
  *     path="/users/email/{email}",
  *     tags={"users"},
  *     summary="Get user by email",
+ * security={{"ApiKey": {}}},
  *     @OA\Parameter(name="email", in="path", required=true, @OA\Schema(type="string")),
  *     @OA\Response(response=200, description="User by email")
  * )
  */
 Flight::route('GET /users/email/@email', function ($email) {
+    Flight::auth_middleware()->authorizeRole(Roles::ADMIN);
     Flight::json(Flight::user_service()->get_user_by_email($email));
 });
 
@@ -44,6 +50,7 @@ Flight::route('GET /users/email/@email', function ($email) {
  *     path="/users",
  *     tags={"users"},
  *     summary="Register new user",
+ * security={{"ApiKey": {}}},
  *     @OA\RequestBody(
  *         required=true,
  *         @OA\JsonContent(
@@ -59,6 +66,7 @@ Flight::route('GET /users/email/@email', function ($email) {
  * )
  */
 Flight::route('POST /users', function () {
+    Flight::auth_middleware()->authorizeRoles([Roles::ADMIN, Roles::USER]);
     $data = Flight::request()->data->getData();
     $data['password_hash'] = password_hash($data['password'], PASSWORD_DEFAULT);
     unset($data['password']);
@@ -75,6 +83,7 @@ Flight::route('POST /users', function () {
  *     path="/users/{id}",
  *     tags={"users"},
  *     summary="Update user",
+ * security={{"ApiKey": {}}},
  *     @OA\Parameter(name="id", in="path", required=true, @OA\Schema(type="integer")),
  *     @OA\RequestBody(
  *         required=true,
@@ -89,6 +98,7 @@ Flight::route('POST /users', function () {
  * )
  */
 Flight::route('PUT /users/@id', function ($id) {
+    Flight::auth_middleware()->authorizeRoles([Roles::ADMIN, Roles::USER]);
     $data = Flight::request()->data->getData();
     try {
         Flight::json(Flight::user_service()->update_user($id, $data));
@@ -102,6 +112,7 @@ Flight::route('PUT /users/@id', function ($id) {
  *     path="/users/login",
  *     tags={"users"},
  *     summary="Login with email and password",
+ * security={{"ApiKey": {}}},
  *     @OA\RequestBody(
  *         required=true,
  *         @OA\JsonContent(
@@ -110,10 +121,12 @@ Flight::route('PUT /users/@id', function ($id) {
  *             @OA\Property(property="password", type="string", example="password123")
  *         )
  *     ),
- *     @OA\Response(response=200, description="User authenticated")
+ *     @OA\Response(response=200, description="User authenticated"),
+ *     @OA\Response(response=401, description="Invalid credentials")
  * )
  */
 Flight::route('POST /users/login', function () {
+    Flight::auth_middleware()->authorizeRoles([Roles::ADMIN, Roles::USER]);
     $data = Flight::request()->data->getData();
     try {
         Flight::json(Flight::user_service()->login($data['email'], $data['password']));
